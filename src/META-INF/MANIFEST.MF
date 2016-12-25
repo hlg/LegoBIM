@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Main-Class: LegoBIM
+Class-Path: groovy-all-1.8.6.jar minim.jar mp3spi1.9.4.jar jsminim.jar
+  minim-spi.jar jl1.0.jar tritonus_aos.jar tritonus_share.jar core.jar
+  opengl.jar
+
