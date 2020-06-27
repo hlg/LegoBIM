@@ -1,5 +1,4 @@
 import processing.core.PApplet
-import cib.utils.Activity
 import ddf.minim.AudioSample
 import ddf.minim.Minim
 

@@ -1,4 +1,3 @@
-import cib.utils.Activity
 import processing.core.PApplet
 import processing.core.PImage
 
