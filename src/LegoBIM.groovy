@@ -1,8 +1,10 @@
 import processing.core.PApplet
 import ddf.minim.AudioSample
 import ddf.minim.Minim
+import processing.serial.*; 
 
 class LegoBIM extends PApplet {
+  Serial serialPort
 
   def data1 = [Ext_0_0: [-30, 290],
           Ext_0_1: [290, 1040],
@@ -62,13 +64,27 @@ class LegoBIM extends PApplet {
   boolean running = false
   boolean atStart = true
   boolean pause = false
+  
+  float scale = screen.width / 2 / 1920
+  // all measures are for a 1920x1080 screen
+
 
   def tick = 0
   def time = -6
   def lastTime
 
+  def counter(){
+     def noBlocks = (stepParts1+stepParts2).inject([:]){ a,e -> e.each{ k,v -> a[k] = (a[k] ?: 0) + v }; a }
+     noBlocks.each{ println it }
+     println "Total: ${noBlocks.values().sum()}"
+  }
+
   void setup() {
-    size((int) screen.width * 2, (int) screen.height, P2D)
+    // counter()
+    def serialPortName = Serial.list().find{ it.startsWith('/dev/ttyUSB')}
+    println serialPortName
+    serialPort = new Serial(this, serialPortName, 9600)
+    size((1920 * 2 * scale) as int, (1080 * scale) as int, P2D)
     textFont(createFont("Arial", 96), 24)
     buzz = new Minim(this).loadSample("Buzzer_.wav")
     def config = [barHeight: 10]
@@ -83,10 +99,11 @@ class LegoBIM extends PApplet {
   }
 
   void draw() {
+    scale(scale)
     background(255)
     translate(40, 100)
     team1.draw(running, time)
-    translate(screenWidth, 0)
+    translate(1920, 0)
     team2.draw(running, time)
     if (running && !pause) {
       tick++
@@ -100,6 +117,10 @@ class LegoBIM extends PApplet {
 
   @Override
   void keyPressed() {
+    handleInput(key)
+  }
+
+  void handleInput(key){
     if (key == 'p') {
       pause = !pause
     }
@@ -128,7 +149,17 @@ class LegoBIM extends PApplet {
     }
   }
 
+  void serialEvent(Serial p){
+     char serialIn = p.readChar()
+     if(serialIn in [(char) 'A', (char) 'B']){
+       println "serial in: $serialIn"    
+       handleInput(serialIn.toLowerCase())
+     }
+  }
+
   public static void main(String[] args) {
     PApplet.main(["LegoBIM"] as String[])
   }
+
 }
+

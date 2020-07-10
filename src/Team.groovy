@@ -30,7 +30,7 @@ class Team {
     pa.stroke(color)
     pa.strokeWeight(2)
     pa.rect(-20, -20, 730, 400)
-    if(running) pa.rect(730, -20, 1120, 900)
+    if(running) pa.rect(730, -20, 1920-830, 1080-150)  // 1120x900 (for 1920x1080 screen?)
     pa.popStyle()
   }
   private void drawStatus() {
@@ -82,13 +82,18 @@ class Team {
 
   void drawStep(){
     partImages.eachWithIndex{ k,img,i ->
-     def y = 500 + i.intdiv(2) * 90
-     pa.image(img, i%2 ? 360 : 40, y)
-     pa.fill(0)
-     pa.text(stepParts[reached+1][k], i%2 ? 320 : 0, y+20)
-   }
-    pa.image(currentStep, pa.screen.width-100-currentStep.width as int, pa.screen.height - 150 -currentStep.height as int)
-
+      def y = 500 + i.intdiv(2) * 90
+      pa.image(img, i%2 ? 360 : 40, y)
+      pa.fill(0)
+      pa.text(stepParts[reached+1][k], i%2 ? 320 : 0, y+20)
+    }
+    pa.image(
+      currentStep, 
+      1920 - 100 - currentStep.width as int, // around 1200
+      1080 - 170 - currentStep.height as int,
+      currentStep.width as int,
+      currentStep.height as int
+    )
   }
 
 }
