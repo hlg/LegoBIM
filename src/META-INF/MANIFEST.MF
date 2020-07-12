@@ -1,6 +1,4 @@
 Manifest-Version: 1.0
 Main-Class: LegoBIM
-Class-Path: groovy-all-1.8.6.jar minim.jar mp3spi1.9.4.jar jsminim.jar
-  minim-spi.jar jl1.0.jar tritonus_aos.jar tritonus_share.jar core.jar
-  opengl.jar
+Class-Path: lib/core.jar lib/jl1.0.jar lib/minim.jar lib/mp3spi1.9.4.jar lib/serial.jar lib/tritonus_share.jar lib/groovy-all-2.4.16.jar lib/jsminim.jar lib/minim-spi.jar lib/RXTXcomm.jar lib/tritonus_aos.jar
 

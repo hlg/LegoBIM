@@ -82,7 +82,6 @@ class LegoBIM extends PApplet {
   void setup() {
     // counter()
     def serialPortName = Serial.list().find{ it.startsWith('/dev/ttyUSB')}
-    println serialPortName
     serialPort = new Serial(this, serialPortName, 9600)
     size((1920 * 2 * scale) as int, (1080 * scale) as int, P2D)
     textFont(createFont("Arial", 96), 24)
