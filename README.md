@@ -5,7 +5,7 @@ Software
 ===========
 To play the game you need a JRE version 11. You can check with `java -version` from the commandline.
 
-Download the prebuilt binary from releases, unzip and run the jar.
+Download the prebuilt binary from [releases](releases/latest) (LegoBIM-x.y.zip), unzip the archive and run the contained jar (LegoBIM.jar) via doulble click, or `java -jar LegoBIM.jar`.
 
 
 
