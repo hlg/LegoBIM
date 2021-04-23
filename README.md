@@ -11,7 +11,7 @@ Download the prebuilt binary from [releases](releases/latest) (LegoBIM-x.y.zip),
 
 Hardware 
 =========
-The self-made hardware in its first version reused a dismantled keybord controller to drive the game through food and palm switches.
+The self-made hardware in its first version reused a dismantled keybord controller to drive the game through foot and palm switches.
 The second version uses the Serial library and can those receive input through an Arduino controlled setup.
 
 
